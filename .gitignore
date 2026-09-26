@@ -1,0 +1,9 @@
+# Files
+*.lp
+*.mps
+*.sol
+*.py[cod]
+
+# Folders
+
+# Exceptions
