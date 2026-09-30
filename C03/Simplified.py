@@ -169,9 +169,9 @@ def curt_cons(m, t, w):
     return m.v_curt[t, w] <= m.wind_profile[w, t]
 m.e_curt_cons = Constraint(m.s_periods, m.s_wind, rule=curt_cons)
 
-def line_flow(m, t, l, s):
+def line_flow(m, t, l):
     return m.v_pf[t, l] == m.line_y[l] * sum(m.v_theta[t, s] * m.line_map[l, s] for s in m.s_buses if m.line_map[l, s] != 0)
-m.e_line_flow = Constraint(m.s_periods, m.s_lines, m.s_buses, rule=line_flow)
+m.e_line_flow = Constraint(m.s_periods, m.s_lines, rule=line_flow)
 
 def line_capacity_min(m, t, l):
     return m.v_pf[t, l] >= -m.line_capacity[l]
