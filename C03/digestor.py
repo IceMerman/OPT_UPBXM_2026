@@ -1,6 +1,7 @@
 from pathlib import Path
 from pandas import DataFrame, ExcelFile
 
+# XLSX_PATH = Path(__file__).parent / "gams" / "input_UC_IEEE24.xlsx"
 XLSX_PATH = Path(__file__).parent / "gams" / "input_UC.xlsx"
 
 class Data():
