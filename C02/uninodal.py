@@ -11,7 +11,7 @@
 from pyomo.environ import (
     Param, Set, ConcreteModel, Var, Constraint, Objective, Suffix, 
     value,
-    NonNegativeReals, maximize, SolverFactory)
+    NonNegativeReals, maximize, minimize, SolverFactory)
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -141,22 +141,17 @@ model.pd = Var(
 
 def social_welfare_rule(m):
 
-    consumer_benefit = sum(
-        m.DemandPrice[d] * m.pd[d]
-        for d in m.DEMAND_BLOCKS
-    )
-
     generation_cost = sum(
         m.GenCost[g] * m.pg[g]
         for g in m.GENERATORS
     )
 
-    return consumer_benefit - generation_cost
+    return generation_cost
 
 
 model.SocialWelfare = Objective(
     rule=social_welfare_rule,
-    sense=maximize
+    sense=minimize
 )
 
 # ============================================================
@@ -176,7 +171,7 @@ model.GeneratorLimits = Constraint(
 # ============================================================
 
 def demand_limit_rule(m, d):
-    return m.pd[d] <= m.DemandMax[d]
+    return m.pd[d] == m.DemandMax[d]
 
 model.DemandLimits = Constraint(
     model.DEMAND_BLOCKS,
