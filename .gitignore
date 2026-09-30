@@ -3,6 +3,10 @@
 *.mps
 *.sol
 *.py[cod]
+*.log
+*report.xlsx
+unserved_load.xlsx
+*.pdf
 
 # Folders
 
