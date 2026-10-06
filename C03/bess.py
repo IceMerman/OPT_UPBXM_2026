@@ -1,4 +1,4 @@
-uninodal: bool = True
+uninodal: bool = False
 use_saeb: bool = False
 
 from digestor import Data

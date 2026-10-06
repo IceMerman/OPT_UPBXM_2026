@@ -100,7 +100,8 @@ m.e_obj = Objective(rule=obj, sense=minimize)
 
 # Constraints
 def cost_aux(m, t):
-    return m.v_c_aux[t] == sum(m.v_c[t, i] for i in m.s_generators) + sum(m.v_curt[t, w] for w in m.s_wind) * ws_penalty + sum(m.v_ll[t, s] + m.v_sl[t, s] for s in m.s_buses) * voll
+    return (m.v_c_aux[t] == sum(m.v_c[t, i] for i in m.s_generators) + sum(m.v_curt[t, w] for w in m.s_wind) * ws_penalty 
+        + sum(m.v_ll[t, s] + m.v_sl[t, s] for s in m.s_buses) * voll)
 m.e_cost_aux = Constraint(m.s_periods, rule=cost_aux)
 
 def cost_sum(m, t, i):

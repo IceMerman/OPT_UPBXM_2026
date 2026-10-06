@@ -76,7 +76,7 @@ m.v_x = Var(m.s_periods, m.s_generators, within=Binary, doc="Binary variable equ
 m.v_y = Var(m.s_periods, m.s_generators, within=Binary, doc="Binary variable equal to 1 if generator is start-up, and 0 otherwise")
 m.v_z = Var(m.s_periods, m.s_generators, within=Binary, doc="Binary variable equal to 1 if generator is shut-down, and 0 otherwise")
 
-m.v_pf = Var(m.s_periods, m.s_lines, within=NonNegativeReals, doc="Power flow through lines")
+m.v_pf = Var(m.s_periods, m.s_lines, within=Reals, doc="Power flow through lines")
 m.v_theta = Var(m.s_periods, m.s_buses, within=Reals, doc="Bus voltage angles")
 m.v_curt = Var(m.s_periods, m.s_wind, within=NonNegativeReals, doc="Wind curtailment")
 m.v_ll = Var(m.s_periods, m.s_buses, within=NonNegativeReals, doc="Unserved load")
